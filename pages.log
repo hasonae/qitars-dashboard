@@ -1,0 +1,5 @@
+Pages ENABLED with build_type=workflow
+Pages URL: https://hasonae.github.io/qitars-dashboard/
+Pages status:  | build_type: workflow
+workflow runs: 1
+run: Deploy Qitars Dashboard to GitHub Pages | completed | failure | https://github.com/hasonae/qitars-dashboard/actions/runs/35668561572
