@@ -25,3 +25,10 @@ scripts/gadm_syria.json
 
 # ملفات التحقق المؤقتة
 /.verify
+
+# ملفات سجلات النشر
+/push.log
+/pages.log
+/repo-check.json
+/live-site.html
+/diag.txt
