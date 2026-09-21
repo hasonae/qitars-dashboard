@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --qitars-teal: #145757;
+  --qitars-gold: #c9a227;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-image:
+    radial-gradient(1200px 500px at 85% -10%, rgba(201, 162, 39, 0.07), transparent 60%),
+    radial-gradient(1000px 500px at 10% -10%, rgba(20, 87, 87, 0.07), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* شرائح تمرير أنيقة */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(20, 87, 87, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(20, 87, 87, 0.45);
+}
+
+@layer components {
+  /* بطاقة زجاجية ناعمة */
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md border border-white/60 shadow-soft rounded-xl2;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lifted hover:-translate-y-1 hover:bg-white/90;
+  }
+
+  /* عنوان قسم ويدجت */
+  .widget-title {
+    @apply text-sm font-bold text-teal-900;
+  }
+
+  .widget-sub {
+    @apply text-xs text-teal-700/60;
+  }
+}
+
+/* تنسيق عناصر Recharts داخل RTL */
+.recharts-wrapper {
+  direction: ltr;
+}
+.recharts-wrapper text {
+  font-family: var(--font-tajawal), sans-serif;
+  font-size: 11px;
+}
+
+/* شريط تقدم الحركة */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.shimmer-bar {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.4s infinite;
+}
