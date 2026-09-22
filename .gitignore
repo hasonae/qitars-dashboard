@@ -9,10 +9,12 @@
 .DS_Store
 *.pem
 
-# debug
+# debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+dl.log
+export.log
 
 # env files
 .env*.local
@@ -20,7 +22,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-# ملفات جغرافية كبيرة مؤقتة (تُستخدم لتوليد الخريطة فقط، غير مطلوبة للنشر)
+# ملفات جغرافية كبيرة مؤقتة (تُستخدم لتوليد الخريطة فقط — غير مطلوبة للنشر)
 scripts/gadm_syria.json
 
 # ملفات التحقق المؤقتة

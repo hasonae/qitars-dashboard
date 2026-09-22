@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 import CountUp from "./CountUp";
 import { useQitars } from "@/lib/store";
+import { assetUrl } from "@/lib/assets";
 import {
   computeInvestmentStats,
   computeStudentStats,
@@ -83,7 +84,7 @@ export default function HeroBanner() {
         >
           <div className="rounded-2xl p-1.5 bg-gold-gradient shadow-lifted">
             <Image
-              src="/alawite-flag.jpg"
+              src={assetUrl("/alawite-flag.jpg")}
               alt="علم الطائفة العلوية"
               width={240}
               height={160}

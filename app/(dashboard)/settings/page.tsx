@@ -2,6 +2,7 @@ import PageHeader from "@/components/dashboard/PageHeader";
 import AccountSettings from "@/components/dashboard/AccountSettings";
 import DataSettings from "@/components/dashboard/DataSettings";
 import Image from "next/image";
+import { assetUrl } from "@/lib/assets";
 
 export const metadata = { title: "الإعدادات | Qitars" };
 
@@ -48,7 +49,7 @@ export default function SettingsPage() {
           <div className="flex items-center gap-5">
             <div className="w-16 h-16 rounded-xl bg-white border border-teal-900/10 shadow-soft flex items-center justify-center overflow-hidden">
               <Image
-                src="/qitars-logo.png"
+                src={assetUrl("/qitars-logo.png")}
                 alt="شعار Qitars"
                 width={56}
                 height={56}
@@ -57,7 +58,7 @@ export default function SettingsPage() {
             </div>
             <div className="w-20 h-14 rounded-lg overflow-hidden ring-2 ring-gold-600/40 shadow-soft">
               <Image
-                src="/alawite-flag.jpg"
+                src={assetUrl("/alawite-flag.jpg")}
                 alt="العلم العلوي"
                 width={80}
                 height={56}

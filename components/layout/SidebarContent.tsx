@@ -8,6 +8,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { navItems } from "./navItems";
+import { assetUrl } from "@/lib/assets";
 
 type SidebarContentProps = {
   collapsed: boolean;
@@ -32,7 +33,7 @@ export default function SidebarContent({
       <div className="flex items-center gap-3 px-4 h-[72px] shrink-0 border-b border-white/10">
         <div className="w-11 h-11 rounded-xl bg-white flex items-center justify-center shadow-lifted shrink-0 overflow-hidden">
           <Image
-            src="/qitars-logo.png"
+            src={assetUrl("/qitars-logo.png")}
             alt="شعار Qitars"
             width={40}
             height={40}

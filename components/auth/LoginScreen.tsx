@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Lock, User, LogIn, AlertCircle } from "lucide-react";
 import { useAuth } from "@/lib/auth";
+import { assetUrl } from "@/lib/assets";
 
 /** شاشة الدخول — لوجو المنظمة كخلفية للشاشة، وعلم الطائفة العلوية خلفية لمربع الدخول */
 export default function LoginScreen() {
@@ -28,7 +29,7 @@ export default function LoginScreen() {
         {/* لوجو المنظمة كخلفية ضخمة شفافة */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <Image
-            src="/qitars-logo.png"
+            src={assetUrl("/qitars-logo.png")}
             alt=""
             width={900}
             height={900}
@@ -55,7 +56,7 @@ export default function LoginScreen() {
           <div className="flex flex-col items-center mb-6">
             <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-lifted overflow-hidden mb-3">
               <Image
-                src="/qitars-logo.png"
+                src={assetUrl("/qitars-logo.png")}
                 alt="شعار Qitars"
                 width={56}
                 height={56}
@@ -133,7 +134,7 @@ export default function LoginScreen() {
       >
         <div className="shrink-0 rounded-2xl p-1.5 bg-gold-gradient shadow-lifted">
           <Image
-            src="/alawite-flag.jpg"
+            src={assetUrl("/alawite-flag.jpg")}
             alt="علم الطائفة العلوية"
             width={160}
             height={107}

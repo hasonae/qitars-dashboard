@@ -1,30 +1,46 @@
 /** @type {import('next').NextConfig} */
 
 // مسار القاعدة للنشر الثابت على GitHub Pages:
-// - عند النشر على مستودع باسم https://github.com/USER/qitars-dashboard
-//   يصبح الموقع على https://USER.github.io/qitars-dashboard ← يجب تعيين GITHUB_PAGES=true
-// - للنشر على مستودع باسم USER.github.io (الموقع على الجذر) أو دومين مخصص:
-//   لا حاجة لأي متغير إضافي
-const isGH =
-  process.env.GITHUB_PAGES === "true" ||
-  process.env.GITHUB_REPOSITORY !== undefined; // يُعرَّف تلقائياً داخل GitHub Actions
+// - ينطبق تلقائياً إذا كان STATIC_EXPORT=true (حتى محلياً في npm run export)
+// - يستخدم اسم المستودع من GITHUB_REPOSITORY، أو "qitars-dashboard" افتراضياً
 const repoName = process.env.GITHUB_REPOSITORY
-  ? process.env.GITHUB_REPOSITORY.split("/")[1]
-  : "";
+  ? process.env.GITHUB_REPOSITORY.split("/")[1]  // ex: "hasanae/qitars-dashboard" → "qitars-dashboard"
+  : "qitars-dashboard";  // القيمة الافتراضية للمحلي وغير المُعرَّف
+
+const isStaticExport = process.env.STATIC_EXPORT === "true";
+const isPagesSubpath = Boolean(repoName) && !repoName.endsWith(".github.io");
+
+// مسار القاعدة الفعلي (فارغ إذا كان النشر على جذر النطاق)
+const basePath = isStaticExport && isPagesSubpath ? `/${repoName}` : "";
 
 const nextConfig = {
   reactStrictMode: true,
+
   // تصدير ثابت كامل (ملفات HTML/CSS/JS فقط) — متوافق مع GitHub Pages
-  ...(process.env.STATIC_EXPORT === "true" ? { output: "export" } : {}),
-  // basePath فقط عندما يكون النشر تحت مسار فرعي /اسم-المستودع
-  ...(isGH && repoName && !repoName.endsWith(".github.io")
-    ? { basePath: `/${repoName}`, assetPrefix: `/${repoName}` }
+  ...(isStaticExport ? { output: "export" } : {}),
+
+  // basePath و assetPrefix يُطبَّقان دائماً عند STATIC_EXPORT=true
+  // بحيث URLs داخل HTML (link/href, script/src, CSS) تأخذ المسار /اسم-المستودع
+  ...(basePath
+    ? {
+        basePath,
+        assetPrefix: basePath,
+      }
     : {}),
+
+  // ⚠️ مهم: next/image مع unoptimized=true لا يضيف basePath تلقائياً،
+  // لذلك نُمرّر القيمة إلى الواجهة لنُدرجها يدوياً عبر lib/assets.ts
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
+
+  // GitHub Pages لا يدعم محسّن الصور من Next — نستخدم unoptimized دائماً
   images: {
-    // GitHub Pages لا يدعم محسّن الصور من Next — نستخدم unoptimized دائماً
     unoptimized: true,
   },
-  trailingSlash: true, // مسارات مجلدية تعمل مباشرة دون سيرفر
+
+  // مسارات مجلدية تعمل مباشرة دون سيرفر
+  trailingSlash: true,
 };
 
 export default nextConfig;

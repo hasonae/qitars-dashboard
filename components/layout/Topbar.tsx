@@ -8,6 +8,7 @@ import { Menu, Bell, Search, ChevronDown, LayoutDashboard } from "lucide-react";
 import { formatToday } from "@/lib/format";
 import { useQitars } from "@/lib/store";
 import { navItems } from "./navItems";
+import { assetUrl } from "@/lib/assets";
 
 type TopbarProps = {
   onOpenMobile: () => void;
@@ -77,7 +78,7 @@ export default function Topbar({ onOpenMobile }: TopbarProps) {
       {/* الشعار المصغّر + علم الطائفة */}
       <div className="lg:hidden flex items-center gap-2">
         <Image
-          src="/qitars-logo.png"
+          src={assetUrl("/qitars-logo.png")}
           alt="Qitars"
           width={36}
           height={36}

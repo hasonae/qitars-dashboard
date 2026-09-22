@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { AuthProvider, useAuth } from "@/lib/auth";
+import { assetUrl } from "@/lib/assets";
 import LoginScreen from "./LoginScreen";
 
 /** يحمي كل صفحات الداشبورد: يعرض شاشة الدخول قبل تسجيل الدخول */
@@ -28,7 +29,7 @@ function Gate({ children }: { children: ReactNode }) {
           className="w-20 h-20 rounded-2xl bg-white flex items-center justify-center shadow-lifted overflow-hidden"
         >
           <Image
-            src="/qitars-logo.png"
+            src={assetUrl("/qitars-logo.png")}
             alt="Qitars"
             width={64}
             height={64}
